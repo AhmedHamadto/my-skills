@@ -44,13 +44,26 @@ Produce a structured spec covering these sections. **Only include sections relev
 - **Architecture**: File structure, key components/modules, data flow
 - **Dependencies**: Only what's truly needed — no bloat
 
-#### 3. Design & UX *(Web/UI and Mobile only)*
-- **Aesthetic**: Choose a specific, intentional design direction (not generic). Consider: minimalist, brutalist, editorial, luxury, playful, retro-futuristic, organic, etc.
-- **Typography**: Pick distinctive, beautiful fonts (Google Fonts). Never default to Inter, Arial, Roboto, or system fonts.
-- **Color palette**: Define a cohesive palette with CSS variables. Bold and intentional, not safe and generic.
-- **Layout**: Consider asymmetry, whitespace, grid-breaking elements, visual hierarchy
-- **Motion**: Meaningful animations — page load sequences, hover states, scroll effects, micro-interactions
-- **Responsive**: Strategy for mobile, tablet, desktop breakpoints
+#### 3. Design & UX *(Web/UI, Full-Stack, and Mobile)*
+
+**IMPORTANT — UI Craftsman Standard**: When the project includes ANY web-facing pages (Web/UI or Full-Stack categories), every page and component MUST be built to `/ui-craftsman` quality. This means:
+
+- **Stack for web pages**: React 18 + Framer Motion + Tailwind CSS v4 (via CDN) + Google Fonts. Single HTML file per page with `<script type="text/babel">`.
+- **Every visible element** must be a `motion.*` component — no static `<div>`, `<p>`, `<button>`, or `<img>`.
+- **Page load choreography**: Staggered entrance animations with cinematic timing (500-800ms, ease `[0.16, 1, 0.3, 1]`).
+- **Scroll-driven motion**: `whileInView` on every section entering the viewport (600-900ms).
+- **Micro-interactions**: Every button, card, and link must have hover/tap animations (200-300ms spring).
+- **Advanced Framer Motion**: Use `AnimatePresence`, `layout` prop, `useMotionValue`, `useSpring`, `useScroll`, `useTransform` where appropriate.
+- **Accessibility**: `useReducedMotion()` hook, semantic HTML, proper heading hierarchy, WCAG AA contrast, 44x44px touch targets.
+
+Design decisions for each page:
+- **Aesthetic**: Choose a specific, intentional design direction (not generic). Consider: liquid luxury, neo-brutalist, editorial, kinetic, organic, retro-futurism, minimalist precision, maximalist chaos, dark cinema, playful/toy, or custom.
+- **Typography**: Pick distinctive, beautiful font pairings (Google Fonts). **Never** default to Inter, Arial, Roboto, Helvetica, Open Sans, or system fonts.
+- **Color palette**: Define a cohesive palette with CSS custom properties (HSL). Bold and intentional, not safe and generic. Minimum: background, surface, text-primary, text-secondary, accent, accent-hover.
+- **Layout**: Break the grid intentionally — asymmetric layouts, generous whitespace (80-120px between sections), clear visual hierarchy.
+- **Motion**: Cinematic animations — page load sequences, hover states, scroll effects, micro-interactions. Never use `linear` or bare `ease`.
+- **Responsive**: Mobile-first with fluid typography (`clamp()`). Test at 375px, 768px, 1024px, 1440px.
+- **Content**: Never use Lorem ipsum. Write compelling, contextually appropriate copy with realistic data.
 
 #### 4. API & Data Design *(APIs, backends, full-stack only)*
 - **Endpoints / Routes**: Method, path, purpose, request/response shape
@@ -85,7 +98,18 @@ Produce a structured spec covering these sections. **Only include sections relev
 
 Build exactly what the spec describes. Do not cut corners. Do not simplify. Execute with the same quality as a senior developer shipping to production.
 
-Key execution principles:
+### Web Page Execution — UI Craftsman Mode
+
+When building any web-facing page or component, execute using the `/ui-craftsman` skill. For each page:
+1. Make the three creative decisions (aesthetic identity, typography system, color story) — keep them consistent across all pages in the same project.
+2. Build with React 18 + Framer Motion on every node + Tailwind CSS v4.
+3. Ensure every element is a `motion.*` component with intentional animation.
+4. Visually verify the result — check layouts, spacing, contrast, and animation fluidity.
+
+For full-stack apps, build the backend first (API, data layer, auth), then build each page to ui-craftsman standards. The backend should be clean and functional; the frontend should be **mesmerizing**.
+
+### General Execution Principles
+
 - **Write real, complete, working code** — not placeholders or TODOs
 - **Every detail matters** — whether that's pixel-perfect UI or well-crafted error messages
 - **Content should feel real** — use realistic data, copy, and examples that fit the context
